@@ -47,7 +47,7 @@ public class Main {
             boolean stillCheckingIfUserWantToLeave = true;
             String playAgainOption = null;
 
-            // loop to check user's answer (y/n), if he wants to end or not, handle exception for IlleaglArgument
+            // loop to check user's answer (y/n), if he wants to end or not, handle exception for IllegalArgument
             while (stillCheckingIfUserWantToLeave) {
                 System.out.println("Wanna play again? y/n");
 
