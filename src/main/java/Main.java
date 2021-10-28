@@ -40,7 +40,11 @@ public class Main {
             // switching chosen category and running proper quiz
             /// TODO: 21.10.2021 complete with functions to actually run quiz and interact with user
             switch (chosenQuizCategory) {
-                case 1 -> System.out.println("Stuff happening with quiz for Film category");
+                case 1 -> {
+                    System.out.println("Stuff happening with quiz for Film category");
+
+                }
+
                 case 2 -> System.out.println("Stuff happening with quiz for Sport category");
             }
 
