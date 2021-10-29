@@ -17,11 +17,11 @@ public class DBConnector {
         return meta.getSessionFactoryBuilder().build();
     }
 
-    public Session session(){
+    public Session openSession(){
         return sessionFactory().openSession();
     }
 
-    public Transaction transaction(){
-        return session().beginTransaction();
+    public Transaction beginTransaction(){
+        return openSession().beginTransaction();
     }
 }

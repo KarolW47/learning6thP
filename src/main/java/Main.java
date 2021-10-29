@@ -1,4 +1,9 @@
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -38,10 +43,19 @@ public class Main {
             }
 
             // switching chosen category and running proper quiz
-            /// TODO: 21.10.2021 complete with functions to actually run quiz and interact with user
+
             switch (chosenQuizCategory) {
                 case 1 -> {
-                    System.out.println("Stuff happening with quiz for Film category");
+                    DBConnector dbConnector = new DBConnector();
+                    SessionFactory actualSessionFactory = dbConnector.sessionFactory();
+                    Session actualSession = actualSessionFactory.openSession();
+                    Transaction actualTransaction = actualSession.beginTransaction();
+
+                    List<Category> result =  (List<Category>) actualSession.createQuery("from category").list();
+                    System.out.println(result);
+
+                    // TODO: 29.10.2021  maping to db
+
 
                 }
 

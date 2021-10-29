@@ -2,7 +2,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Film {
+public class QuizQA {
 
     @Id
     private int id;
