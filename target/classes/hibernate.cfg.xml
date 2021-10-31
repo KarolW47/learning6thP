@@ -11,6 +11,8 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">Zwarzony09871</property>
         <property name="hibernate.current_session_context_class">thread</property>
-        <mapping resource="com/Testdata.hbm.xml"/>
+        <mapping class="Category"/>
+        <mapping class="QuizQA"/>
+
     </session-factory>
 </hibernate-configuration>

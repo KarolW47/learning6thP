@@ -1,20 +1,32 @@
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table (name = "quiz_qa")
 public class QuizQA {
 
     @Id
-    private int id;
+    @Column (name = "quiz_qa_id")
+    private int quizQAId;
 
-    String question;
+    @Column (name = "question")
+    private String question;
 
-    String correctAnswer;
+    @Column (name = "correct_answer")
+    private String correctAnswer;
 
-    String incorrectAnswer1;
+    @Column (name = "incorrect_answer1")
+    private String incorrectAnswer1;
 
-    String incorrectAnswer2;
+    @Column (name = "incorrect_answer2")
+    private String incorrectAnswer2;
 
-    String incorrectAnswer3;
+    @Column (name = "incorrect_answer3")
+    private String incorrectAnswer3;
+
+    @Column (name = "category_id")
+    private int categoryId;
 
 }

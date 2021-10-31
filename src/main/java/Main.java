@@ -51,11 +51,8 @@ public class Main {
                     Session actualSession = actualSessionFactory.openSession();
                     Transaction actualTransaction = actualSession.beginTransaction();
 
-                    List<Category> result =  (List<Category>) actualSession.createQuery("from category").list();
+                    List<Category> result =  (List<Category>) actualSession.createQuery("from Category").list();
                     System.out.println(result);
-
-                    // TODO: 29.10.2021  maping to db
-
 
                 }
 
