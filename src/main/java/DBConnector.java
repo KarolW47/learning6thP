@@ -17,10 +17,12 @@ public class DBConnector {
         return meta.getSessionFactoryBuilder().build();
     }
 
+    //opening session to operate with db queries
     public Session openSession(){
         return sessionFactory().openSession();
     }
 
+    //making transaction for passing info to db
     public Transaction beginTransaction(){
         return openSession().beginTransaction();
     }

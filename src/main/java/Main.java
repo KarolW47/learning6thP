@@ -4,6 +4,7 @@ import org.hibernate.Transaction;
 
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
@@ -49,10 +50,12 @@ public class Main {
                     DBConnector dbConnector = new DBConnector();
                     SessionFactory actualSessionFactory = dbConnector.sessionFactory();
                     Session actualSession = actualSessionFactory.openSession();
-                    Transaction actualTransaction = actualSession.beginTransaction();
 
-                    List<Category> result =  (List<Category>) actualSession.createQuery("from Category").list();
-                    System.out.println(result);
+                    //this is just for tests to check for errors while connecting with db
+                    List<Category> result = (List<Category>) actualSession.createQuery("from Category").list();
+                    Optional <Category> cat = result.stream().filter(c -> c.getQuizQAFromCategory().getQuizQAId() == 5).findFirst();
+                    QuizQA quizQA = cat.get().getQuizQAFromCategory();
+                    System.out.println(quizQA.getCorrectAnswer());
 
                 }
 

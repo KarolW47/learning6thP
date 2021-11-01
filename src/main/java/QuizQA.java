@@ -1,7 +1,4 @@
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table (name = "quiz_qa")
@@ -27,6 +24,30 @@ public class QuizQA {
     private String incorrectAnswer3;
 
     @Column (name = "category_id")
-    private int categoryId;
+    private int categoryIdQA;
 
+
+    public int getQuizQAId() {
+        return quizQAId;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public String getIncorrectAnswer1() {
+        return incorrectAnswer1;
+    }
+
+    public String getIncorrectAnswer2() {
+        return incorrectAnswer2;
+    }
+
+    public String getIncorrectAnswer3() {
+        return incorrectAnswer3;
+    }
 }

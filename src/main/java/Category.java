@@ -1,5 +1,3 @@
-import jdk.jfr.Name;
-
 import javax.persistence.*;
 
 @Entity
@@ -10,10 +8,19 @@ public class Category {
     @Column (name = "category_id")
     private int categoryId;
 
-    @OneToOne
-    @JoinColumn(name = "category_id")
-    @MapsId
+    @Column (name = "category_name")
+    private String categoryName;
+
+    @OneToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", referencedColumnName = "categoryIdQA")
     private QuizQA quizQAFromCategory;
 
 
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public QuizQA getQuizQAFromCategory() {
+        return quizQAFromCategory;
+    }
 }
