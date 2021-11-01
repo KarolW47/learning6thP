@@ -52,6 +52,7 @@ public class Main {
                     Session actualSession = actualSessionFactory.openSession();
 
                     //this is just for tests to check for errors while connecting with db
+                    // TODO: 01.11.2021 gotta change it to properly working quiz
                     List<Category> result = (List<Category>) actualSession.createQuery("from Category").list();
                     Optional <Category> cat = result.stream().filter(c -> c.getQuizQAFromCategory().getQuizQAId() == 5).findFirst();
                     QuizQA quizQA = cat.get().getQuizQAFromCategory();
