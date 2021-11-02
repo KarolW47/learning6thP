@@ -22,7 +22,7 @@ public class DBConnector {
         return sessionFactory().openSession();
     }
 
-    //making transaction for passing info to db
+    //making transaction for passing data to db
     public Transaction beginTransaction(){
         return openSession().beginTransaction();
     }
