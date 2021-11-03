@@ -1,6 +1,6 @@
 import javax.persistence.*;
 
-@Entity
+@Entity (name = "category")
 @Table (name = "category")
 public class Category {
 

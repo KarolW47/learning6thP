@@ -10,21 +10,19 @@ public class DBTransactions  {
     SessionFactory actualSessionFactory = dbConnector.sessionFactory();
     Session actualSession = actualSessionFactory.openSession();
 
-    private List<Category> get5RandomQuestions (AvailableCategories availableCategories){
-        List<Category> result = (List<Category>) actualSession.createQuery("SELECT * FROM category " +
+    protected List<QuizQA> get5RandomQuestions (AvailableCategories availableCategories){
+        List<QuizQA> result = (List<QuizQA>) actualSession.createQuery("SELECT " +
+                "quiz_qa_id, question, correct_answer, incorrect_answer1, incorrect_answer2, incorrect_answer3 " +
+                "FROM category " +
                 "LEFT JOIN quiz_qa ON category.category_id = quiz_qa.category_id " +
                 "WHERE category_name = '" + availableCategories.name() + "' " +
-                "ORDER BY RAND() " +
-                "LIMIT 5").list();
-        Optional<Category> cat = result.stream().filter(c -> c.getQuizQAFromCategory().getQuizQAId() == 5).findFirst();
-        QuizQA quizQA = cat.get().getQuizQAFromCategory();
-        System.out.println(quizQA.getCorrectAnswer());
-
+                "ORDER BY RAND()").list();
         return result;
     }
 
-    private String qetAnswerToCompareWithUsersChoice (AvailableCategories availableCategories, String questionId){
-        List<String> correctQuestionFromDB = (List<String>) actualSession.createQuery("SELECT correct_answer FROM category" +
+    protected String qetAnswerToCompareWithUsersChoice (AvailableCategories availableCategories, String questionId){
+        List<String> correctQuestionFromDB = (List<String>) actualSession.createQuery("SELECT correct_answer " +
+                "FROM category" +
                 "LEFT JOIN quiz_qa ON category.category_id = quiz_qa.category_id " +
                 "WHERE category_name = '" + availableCategories.name() + "' " +
                 "AND correct_answer = '" + questionId + "'").list();

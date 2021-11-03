@@ -34,7 +34,7 @@ public class Main {
                 } catch (InputMismatchException inputMismatchException) {
                     System.out.println("Wrong answer.");
                 } finally {
-                    if (chosenQuizCategory>=1 && chosenQuizCategory<=2) {
+                    if (chosenQuizCategory >= 1 && chosenQuizCategory <= 2) {
                         stillCheckingForUsersCategoryPick = false;
                     } else {
                         System.out.println("It needs to be number of a available category.");
@@ -46,9 +46,11 @@ public class Main {
             // switching chosen category and running proper quiz
             switch (chosenQuizCategory) {
                 case 1 -> {
+                    DBTransactions dbTransactions = new DBTransactions();
+                    List<QuizQA> list = dbTransactions.get5RandomQuestions(AvailableCategories.FILM);
+                    list.forEach(System.out::println);
 
                 }
-
                 case 2 -> System.out.println("Stuff happening with quiz for Sport category");
             }
 
