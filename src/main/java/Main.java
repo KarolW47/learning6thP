@@ -48,7 +48,8 @@ public class Main {
                 case 1 -> {
                     DBTransactions dbTransactions = new DBTransactions();
                     List<QuizQA> list = dbTransactions.get5RandomQuestions(AvailableCategories.FILM);
-                    list.forEach(System.out::println);
+                    System.out.println((long) list.size());
+                    list.forEach(c -> System.out.println(c.getCorrectAnswer()));
 
                 }
                 case 2 -> System.out.println("Stuff happening with quiz for Sport category");

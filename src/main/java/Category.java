@@ -11,9 +11,18 @@ public class Category {
     @Column (name = "category_name")
     private String categoryName;
 
-    @OneToOne (fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "category_id", referencedColumnName = "categoryIdQA")
     private QuizQA quizQAFromCategory;
+
+    public Category() {
+    }
+
+    public Category(int categoryId, String categoryName, QuizQA quizQAFromCategory) {
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+        this.quizQAFromCategory = quizQAFromCategory;
+    }
 
 
     public String getCategoryName() {
