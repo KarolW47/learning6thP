@@ -14,7 +14,6 @@ public class Main {
 
         // loop determines if app running
         while (isStillRunning) {
-            Scanner scanner = new Scanner(System.in);
 
             System.out.println("Welcome in quiz by KaWa! :)");
 
@@ -30,7 +29,7 @@ public class Main {
                 System.out.println("Chose category:");
 
                 try {
-                    chosenQuizCategory = scanner.nextInt();
+                    chosenQuizCategory = Integer.parseInt(ResponseScanner.responseScanner());
                 } catch (InputMismatchException inputMismatchException) {
                     System.out.println("Wrong answer.");
                 } finally {
@@ -38,7 +37,6 @@ public class Main {
                         stillCheckingForUsersCategoryPick = false;
                     } else {
                         System.out.println("It needs to be number of a available category.");
-                        scanner.nextLine();
                     }
                 }
             }
@@ -46,10 +44,6 @@ public class Main {
             // switching chosen category and running proper quiz
             switch (chosenQuizCategory) {
                 case 1 -> {
-                    DBTransactions dbTransactions = new DBTransactions();
-                    List<QuizQA> list = dbTransactions.get5RandomQuestions(AvailableCategories.FILM);
-                    System.out.println((long) list.size());
-                    list.forEach(c -> System.out.println(c.getCorrectAnswer()));
 
                 }
                 case 2 -> System.out.println("Stuff happening with quiz for Sport category");
@@ -63,7 +57,7 @@ public class Main {
                 System.out.println("Wanna play again? y/n");
 
                 try {
-                    playAgainOption = scanner.next();
+                    playAgainOption = ResponseScanner.responseScanner();
                 } catch (IllegalArgumentException illegalArgumentException) {
                     System.out.println("Wrong answer.");
                 } finally {
