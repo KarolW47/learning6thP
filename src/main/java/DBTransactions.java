@@ -3,6 +3,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public class DBTransactions  {
 
@@ -10,7 +11,7 @@ public class DBTransactions  {
     SessionFactory actualSessionFactory = dbConnector.sessionFactory();
     Session actualSession = actualSessionFactory.openSession();
 
-    protected List<QuizQA> get5RandomQuestions (AvailableCategories availableCategories){
+    protected List<QuizQA> get5RandomQuestionsFromDB(AvailableCategories availableCategories){
         String queryToGetAllQ = "SELECT q " +
                 "FROM Category c, QuizQA q " +
                 "LEFT JOIN c.quizQAFromCategory " +
@@ -24,17 +25,17 @@ public class DBTransactions  {
         return result;
     }
 
-    protected String qetAnswerToCompareWithUsersChoice (AvailableCategories availableCategories, String questionId){
-        String queryToGetAllQ = "SELECT q " +
+    protected String qetCorrectAnswerFromDBToCompareWithUsersChoice(AvailableCategories availableCategories, int questionId){
+        String queryToGetAllQ = "SELECT q.correctAnswer " +
                 "FROM Category c, QuizQA q " +
                 "LEFT JOIN c.quizQAFromCategory " +
                 "WHERE c.categoryName = '"+ availableCategories.name() + "' " +
                 "AND q.quizQAId ='"+ questionId +"'";
 
         Query query = actualSession.createQuery(queryToGetAllQ);
-        List<String> list = query.list();
+        List<String> stringList = query.list();
+        String result = stringList.stream().findFirst().get();
 
-        String result = list.stream().findFirst().toString();
         return result;
     }
 

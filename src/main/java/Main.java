@@ -1,16 +1,10 @@
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
 import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
         boolean isStillRunning = true;
+        ResponseScanner responseScanner = new ResponseScanner();
 
         // loop determines if app running
         while (isStillRunning) {
@@ -29,7 +23,7 @@ public class Main {
                 System.out.println("Chose category:");
 
                 try {
-                    chosenQuizCategory = Integer.parseInt(ResponseScanner.responseScanner());
+                    chosenQuizCategory = Integer.parseInt(responseScanner.scanResponse());
                 } catch (InputMismatchException inputMismatchException) {
                     System.out.println("Wrong answer.");
                 } finally {
@@ -41,12 +35,18 @@ public class Main {
                 }
             }
 
+            QAHandler qaHandler = new QAHandler();
+            int obtainedPointsInQuiz;
             // switching chosen category and running proper quiz
             switch (chosenQuizCategory) {
                 case 1 -> {
-
+                    obtainedPointsInQuiz = qaHandler.handleQuestionAndAnswers(AvailableCategories.FILM);
+                    System.out.println("You obtained "+ obtainedPointsInQuiz + "/5 points");
                 }
-                case 2 -> System.out.println("Stuff happening with quiz for Sport category");
+                case 2 -> {
+                    obtainedPointsInQuiz = qaHandler.handleQuestionAndAnswers(AvailableCategories.SPORT);
+                    System.out.println("You obtained "+ obtainedPointsInQuiz + "/5 points");
+                }
             }
 
             boolean stillCheckingIfUserWantToLeave = true;
@@ -57,7 +57,7 @@ public class Main {
                 System.out.println("Wanna play again? y/n");
 
                 try {
-                    playAgainOption = ResponseScanner.responseScanner();
+                    playAgainOption = responseScanner.scanResponse();
                 } catch (IllegalArgumentException illegalArgumentException) {
                     System.out.println("Wrong answer.");
                 } finally {

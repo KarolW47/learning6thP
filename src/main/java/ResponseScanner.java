@@ -2,8 +2,9 @@ import java.util.Scanner;
 
 public class ResponseScanner { ;
 
-    protected static String responseScanner(){
-        Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
+
+    public String scanResponse(){
         return scanner.nextLine();
     }
 }
