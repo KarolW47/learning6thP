@@ -3,7 +3,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import java.util.List;
-import java.util.Optional;
 
 public class DBTransactions  {
 
@@ -25,7 +24,7 @@ public class DBTransactions  {
         return result;
     }
 
-    protected String qetCorrectAnswerFromDBToCompareWithUsersChoice(AvailableCategories availableCategories, int questionId){
+    protected String qetCorrectAnswerFromDB(AvailableCategories availableCategories, int questionId){
         String queryToGetAllQ = "SELECT q.correctAnswer " +
                 "FROM Category c, QuizQA q " +
                 "LEFT JOIN c.quizQAFromCategory " +

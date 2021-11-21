@@ -7,7 +7,7 @@ public class QAHandler {
     private final DBTransactions dbTransactions = new DBTransactions();
 
 
-    public int handleQuestionAndAnswers (AvailableCategories availableCategories) {
+    public int handleQuestionsAndAnswers(AvailableCategories availableCategories) {
 
         List<QuizQA> quizQAList = dbTransactions.get5RandomQuestionsFromDB(availableCategories);
         int scorePointsCounter = 0;
@@ -31,7 +31,7 @@ public class QAHandler {
             boolean isTypedLetterNotAcceptable = true;
 
             String correctAnswerToActualQuestionHolder =
-                    dbTransactions.qetCorrectAnswerFromDBToCompareWithUsersChoice(availableCategories, quizQAList.get(i-1).getQuizQAId());
+                    dbTransactions.qetCorrectAnswerFromDB(availableCategories, quizQAList.get(i-1).getQuizQAId());
 
             while (isTypedLetterNotAcceptable) {
                 ResponseScanner responseScanner = new ResponseScanner();
